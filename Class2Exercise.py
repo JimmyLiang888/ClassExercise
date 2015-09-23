@@ -45,14 +45,9 @@ average = float(sum(prices))/len(data)
 away_teams = []
 for row in data:
     away_team = row[0].split("at",1)[0]
-    away_team.append(away_team)
+    away_teams.append(away_team)
 print away_teams
 
-index = 0
-awayteam = data.find("at")
-for awayteam in items:
-    print (index, item)
-    index +=1
 
 # Step 5: Use a for loop to make a list of the home teams.
 # Hint: Use the string method 'find' to locate the start and end of the home team
