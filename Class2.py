@@ -79,11 +79,8 @@ cubes = [num**3 for num in nums]    # expression (num**3) goes first, brackets
 
 '''
 EXERCISE:
-
 1. Given that: letters = ['a','b','c']
 Write a list comprehension that returns: ['A','B','C']
-
-
 2. Given that: word = 'abc'
 Write a list comprehension that returns: ['A','B','C']
 '''
@@ -109,16 +106,13 @@ word = 'abc'
 
 '''
 DICTIONARIES
-
 dictionaries are similar to lists:
 - both can contain multiple data types
 - both are iterable
 - both are mutable
-
 dictionaries are different from lists:
 - dictionaries are unordered
 - dictionary lookup time is constant regardless of dictionary size
-
 dictionaries are like real dictionaries:
 - dictionaries are made of key-value pairs (word and definition)
 - dictionary keys must be unique (each word is only defined once)
@@ -149,7 +143,6 @@ family['kids'][0]   # returns 'bart'
 
 '''
 EXERCISE:
-
 1. Print the name of the mom.
 2. Change the size to 5.
 3. Add 'Maggie' to the list of kids.
@@ -209,7 +202,6 @@ soup.title # now its a nice Python object
 
 '''
 APIs
-
 API Providers: https://apigee.com/providers
 Echo Nest API Console: https://apigee.com/console/echonest
 Echo Nest Developer Center (for obtaining API key): http://developer.echonest.com/
@@ -235,11 +227,9 @@ names
 
 '''
 WORKING WITH PUBLIC DATA
-
 FiveThirtyEight: http://fivethirtyeight.com/
 FiveThirtyEight data: https://github.com/fivethirtyeight/data
 NFL ticket prices data: https://github.com/fivethirtyeight/data/tree/master/nfl-ticket-prices
-
 Question: What is the average ticket price for Ravens' home vs away games, and
 how do those prices compare to the overall average ticket price?
 '''
@@ -272,39 +262,41 @@ Step 3: Calculate the overall average ticket price.
 Hint: Calculate the sum of the list and divide by the length, and keep in mind
       that one of the numbers must be a float in order to perform "real" division.
 
-average = float(sum(prices))/len(data)
+avg_price = sum(prices) / len(prices)
+avg_price == 135
 
 Step 4: Use a for loop to make a list of the away teams.
 Hint: Use the string method 'find' to locate the end of the away team name,
       and then slice the string up to that point.
-
+    
 away_teams = []
-for row in data:
-    away_team = row[0].split("at",1)[0]
-    away_team.append(away_team)
-print away_teams
-
-index = 0
-awayteam = data.find("at")
-for awayteam in items:
-    print (index, item)
-    index +=1
+for event in events:
+    away_teams.append(event[:event.find(' at')])
 
 Step 5: Use a for loop to make a list of the home teams.
 Hint: Use the string method 'find' to locate the start and end of the home team
       name, and then slice the string.
-
+home_teams = []
+for event in events:
+    home_teams.append(event[event.find(' at ')+4:event.find(' Tickets on' )])
 
 Step 6: Create a list of prices for Ravens (or 49ers or whatever) home games.
 Hint: Use the zip function to pair home teams and prices, use a for loop to
       iterate through both home teams and prices at once, and then add a condition
       to only save the price if the team is the Ravens.
-
-
+ravens_home_prices = []
+for home_team, price in zip(home_teams, prices):
+    if home_team == "Baltimore Ravens":
+        ravens_home_prices.append(price)
+        
 Step 7: Create a list of prices for Ravens away games.
-
-
+ravens_away_prices = []
+for away_team, price in zip(away_teams, prices):
+    if away_team == "Baltimore Ravens":
+        ravens_away_prices.append(price)
+        
 Step 8: Calculate the average of each of the price lists.
-
+avg_ravens_away_price = sum(ravens_away_prices) / len(ravens_away_prices)
+avg_ravens_home_price = sum(ravens_home_prices) / len(ravens_home_prices)
 
 '''
